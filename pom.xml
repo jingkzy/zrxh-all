@@ -42,5 +42,6 @@
     <module>zrxh-ucenter-core</module>
     <module>zrxh-pingche-data</module>
     <module>zrxh-ucenter-data</module>
+    <module>zrxh-oa</module>
   </modules>
 </project>
