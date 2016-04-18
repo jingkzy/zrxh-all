@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrxh.pingche.data.dao.InspFailureSkeletonMapper" >
+  <resultMap id="BaseResultMap" type="com.zrxh.pingche.data.entity.InspFailureSkeleton" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createUser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createDept" property="createdept" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateUser" property="updateuser" jdbcType="VARCHAR" />
+    <result column="updateDept" property="updatedept" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="carInfoId" property="carinfoid" jdbcType="VARCHAR" />
+    <result column="partCode" property="partcode" jdbcType="VARCHAR" />
+    <result column="partName" property="partname" jdbcType="VARCHAR" />
+    <result column="crashBeam" property="crashbeam" jdbcType="VARCHAR" />
+    <result column="damageDegree" property="damagedegree" jdbcType="VARCHAR" />
+    <result column="carID" property="carid" jdbcType="INTEGER" />
+    <result column="XAxis" property="xaxis" jdbcType="INTEGER" />
+    <result column="YAxis" property="yaxis" jdbcType="INTEGER" />
+    <result column="Color" property="color" jdbcType="VARCHAR" />
+    <result column="Part_name" property="partName" jdbcType="VARCHAR" />
+    <result column="SkeletonBox" property="skeletonbox" jdbcType="VARCHAR" />
+    <result column="PhotoUrl" property="photourl" jdbcType="VARCHAR" />
+    <result column="EnglishPart_name" property="englishpartName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createUser, createDept, createTime, updateUser, updateDept, updateTime, carInfoId, 
+    partCode, partName, crashBeam, damageDegree, carID, XAxis, YAxis, Color, Part_name, 
+    SkeletonBox, PhotoUrl, EnglishPart_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zrxh.pingche.data.entity.InspFailureSkeletonExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from insp_failure_skeleton
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from insp_failure_skeleton
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from insp_failure_skeleton
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zrxh.pingche.data.entity.InspFailureSkeleton" >
+    insert into insp_failure_skeleton (id, createUser, createDept, 
+      createTime, updateUser, updateDept, 
+      updateTime, carInfoId, partCode, 
+      partName, crashBeam, damageDegree, 
+      carID, XAxis, YAxis, 
+      Color, Part_name, SkeletonBox, 
+      PhotoUrl, EnglishPart_name)
+    values (#{id,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createdept,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatedept,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{carinfoid,jdbcType=VARCHAR}, #{partcode,jdbcType=VARCHAR}, 
+      #{partname,jdbcType=VARCHAR}, #{crashbeam,jdbcType=VARCHAR}, #{damagedegree,jdbcType=VARCHAR}, 
+      #{carid,jdbcType=INTEGER}, #{xaxis,jdbcType=INTEGER}, #{yaxis,jdbcType=INTEGER}, 
+      #{color,jdbcType=VARCHAR}, #{partName,jdbcType=VARCHAR}, #{skeletonbox,jdbcType=VARCHAR}, 
+      #{photourl,jdbcType=VARCHAR}, #{englishpartName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrxh.pingche.data.entity.InspFailureSkeleton" >
+    insert into insp_failure_skeleton
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createuser != null" >
+        createUser,
+      </if>
+      <if test="createdept != null" >
+        createDept,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updateuser != null" >
+        updateUser,
+      </if>
+      <if test="updatedept != null" >
+        updateDept,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId,
+      </if>
+      <if test="partcode != null" >
+        partCode,
+      </if>
+      <if test="partname != null" >
+        partName,
+      </if>
+      <if test="crashbeam != null" >
+        crashBeam,
+      </if>
+      <if test="damagedegree != null" >
+        damageDegree,
+      </if>
+      <if test="carid != null" >
+        carID,
+      </if>
+      <if test="xaxis != null" >
+        XAxis,
+      </if>
+      <if test="yaxis != null" >
+        YAxis,
+      </if>
+      <if test="color != null" >
+        Color,
+      </if>
+      <if test="partName != null" >
+        Part_name,
+      </if>
+      <if test="skeletonbox != null" >
+        SkeletonBox,
+      </if>
+      <if test="photourl != null" >
+        PhotoUrl,
+      </if>
+      <if test="englishpartName != null" >
+        EnglishPart_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="partcode != null" >
+        #{partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="partname != null" >
+        #{partname,jdbcType=VARCHAR},
+      </if>
+      <if test="crashbeam != null" >
+        #{crashbeam,jdbcType=VARCHAR},
+      </if>
+      <if test="damagedegree != null" >
+        #{damagedegree,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null" >
+        #{carid,jdbcType=INTEGER},
+      </if>
+      <if test="xaxis != null" >
+        #{xaxis,jdbcType=INTEGER},
+      </if>
+      <if test="yaxis != null" >
+        #{yaxis,jdbcType=INTEGER},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="partName != null" >
+        #{partName,jdbcType=VARCHAR},
+      </if>
+      <if test="skeletonbox != null" >
+        #{skeletonbox,jdbcType=VARCHAR},
+      </if>
+      <if test="photourl != null" >
+        #{photourl,jdbcType=VARCHAR},
+      </if>
+      <if test="englishpartName != null" >
+        #{englishpartName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrxh.pingche.data.entity.InspFailureSkeletonExample" resultType="java.lang.Integer" >
+    select count(*) from insp_failure_skeleton
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update insp_failure_skeleton
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuser != null" >
+        createUser = #{record.createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdept != null" >
+        createDept = #{record.createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateuser != null" >
+        updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedept != null" >
+        updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carinfoid != null" >
+        carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partcode != null" >
+        partCode = #{record.partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partname != null" >
+        partName = #{record.partname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crashbeam != null" >
+        crashBeam = #{record.crashbeam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.damagedegree != null" >
+        damageDegree = #{record.damagedegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carid != null" >
+        carID = #{record.carid,jdbcType=INTEGER},
+      </if>
+      <if test="record.xaxis != null" >
+        XAxis = #{record.xaxis,jdbcType=INTEGER},
+      </if>
+      <if test="record.yaxis != null" >
+        YAxis = #{record.yaxis,jdbcType=INTEGER},
+      </if>
+      <if test="record.color != null" >
+        Color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partName != null" >
+        Part_name = #{record.partName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skeletonbox != null" >
+        SkeletonBox = #{record.skeletonbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photourl != null" >
+        PhotoUrl = #{record.photourl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.englishpartName != null" >
+        EnglishPart_name = #{record.englishpartName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update insp_failure_skeleton
+    set id = #{record.id,jdbcType=VARCHAR},
+      createUser = #{record.createuser,jdbcType=VARCHAR},
+      createDept = #{record.createdept,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      partCode = #{record.partcode,jdbcType=VARCHAR},
+      partName = #{record.partname,jdbcType=VARCHAR},
+      crashBeam = #{record.crashbeam,jdbcType=VARCHAR},
+      damageDegree = #{record.damagedegree,jdbcType=VARCHAR},
+      carID = #{record.carid,jdbcType=INTEGER},
+      XAxis = #{record.xaxis,jdbcType=INTEGER},
+      YAxis = #{record.yaxis,jdbcType=INTEGER},
+      Color = #{record.color,jdbcType=VARCHAR},
+      Part_name = #{record.partName,jdbcType=VARCHAR},
+      SkeletonBox = #{record.skeletonbox,jdbcType=VARCHAR},
+      PhotoUrl = #{record.photourl,jdbcType=VARCHAR},
+      EnglishPart_name = #{record.englishpartName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrxh.pingche.data.entity.InspFailureSkeleton" >
+    update insp_failure_skeleton
+    <set >
+      <if test="createuser != null" >
+        createUser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        createDept = #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        updateUser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        updateDept = #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="partcode != null" >
+        partCode = #{partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="partname != null" >
+        partName = #{partname,jdbcType=VARCHAR},
+      </if>
+      <if test="crashbeam != null" >
+        crashBeam = #{crashbeam,jdbcType=VARCHAR},
+      </if>
+      <if test="damagedegree != null" >
+        damageDegree = #{damagedegree,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null" >
+        carID = #{carid,jdbcType=INTEGER},
+      </if>
+      <if test="xaxis != null" >
+        XAxis = #{xaxis,jdbcType=INTEGER},
+      </if>
+      <if test="yaxis != null" >
+        YAxis = #{yaxis,jdbcType=INTEGER},
+      </if>
+      <if test="color != null" >
+        Color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="partName != null" >
+        Part_name = #{partName,jdbcType=VARCHAR},
+      </if>
+      <if test="skeletonbox != null" >
+        SkeletonBox = #{skeletonbox,jdbcType=VARCHAR},
+      </if>
+      <if test="photourl != null" >
+        PhotoUrl = #{photourl,jdbcType=VARCHAR},
+      </if>
+      <if test="englishpartName != null" >
+        EnglishPart_name = #{englishpartName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrxh.pingche.data.entity.InspFailureSkeleton" >
+    update insp_failure_skeleton
+    set createUser = #{createuser,jdbcType=VARCHAR},
+      createDept = #{createdept,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateUser = #{updateuser,jdbcType=VARCHAR},
+      updateDept = #{updatedept,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      partCode = #{partcode,jdbcType=VARCHAR},
+      partName = #{partname,jdbcType=VARCHAR},
+      crashBeam = #{crashbeam,jdbcType=VARCHAR},
+      damageDegree = #{damagedegree,jdbcType=VARCHAR},
+      carID = #{carid,jdbcType=INTEGER},
+      XAxis = #{xaxis,jdbcType=INTEGER},
+      YAxis = #{yaxis,jdbcType=INTEGER},
+      Color = #{color,jdbcType=VARCHAR},
+      Part_name = #{partName,jdbcType=VARCHAR},
+      SkeletonBox = #{skeletonbox,jdbcType=VARCHAR},
+      PhotoUrl = #{photourl,jdbcType=VARCHAR},
+      EnglishPart_name = #{englishpartName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrxh.pingche.data.dao.InspDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.zrxh.pingche.data.entity.InspDictionary" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createUser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createDept" property="createdept" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateUser" property="updateuser" jdbcType="VARCHAR" />
+    <result column="updateDept" property="updatedept" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="dictCode" property="dictcode" jdbcType="VARCHAR" />
+    <result column="dictValue" property="dictvalue" jdbcType="VARCHAR" />
+    <result column="dictType" property="dicttype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createUser, createDept, createTime, updateUser, updateDept, updateTime, dictCode, 
+    dictValue, dictType
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zrxh.pingche.data.entity.InspDictionaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from insp_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from insp_dictionary
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from insp_dictionary
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zrxh.pingche.data.entity.InspDictionary" >
+    insert into insp_dictionary (id, createUser, createDept, 
+      createTime, updateUser, updateDept, 
+      updateTime, dictCode, dictValue, 
+      dictType)
+    values (#{id,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createdept,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatedept,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{dictcode,jdbcType=VARCHAR}, #{dictvalue,jdbcType=VARCHAR}, 
+      #{dicttype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrxh.pingche.data.entity.InspDictionary" >
+    insert into insp_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createuser != null" >
+        createUser,
+      </if>
+      <if test="createdept != null" >
+        createDept,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updateuser != null" >
+        updateUser,
+      </if>
+      <if test="updatedept != null" >
+        updateDept,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="dictcode != null" >
+        dictCode,
+      </if>
+      <if test="dictvalue != null" >
+        dictValue,
+      </if>
+      <if test="dicttype != null" >
+        dictType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dictcode != null" >
+        #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictvalue != null" >
+        #{dictvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="dicttype != null" >
+        #{dicttype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrxh.pingche.data.entity.InspDictionaryExample" resultType="java.lang.Integer" >
+    select count(*) from insp_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update insp_dictionary
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuser != null" >
+        createUser = #{record.createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdept != null" >
+        createDept = #{record.createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateuser != null" >
+        updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedept != null" >
+        updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dictcode != null" >
+        dictCode = #{record.dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictvalue != null" >
+        dictValue = #{record.dictvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dicttype != null" >
+        dictType = #{record.dicttype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update insp_dictionary
+    set id = #{record.id,jdbcType=VARCHAR},
+      createUser = #{record.createuser,jdbcType=VARCHAR},
+      createDept = #{record.createdept,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      dictCode = #{record.dictcode,jdbcType=VARCHAR},
+      dictValue = #{record.dictvalue,jdbcType=VARCHAR},
+      dictType = #{record.dicttype,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrxh.pingche.data.entity.InspDictionary" >
+    update insp_dictionary
+    <set >
+      <if test="createuser != null" >
+        createUser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        createDept = #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        updateUser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        updateDept = #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dictcode != null" >
+        dictCode = #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictvalue != null" >
+        dictValue = #{dictvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="dicttype != null" >
+        dictType = #{dicttype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrxh.pingche.data.entity.InspDictionary" >
+    update insp_dictionary
+    set createUser = #{createuser,jdbcType=VARCHAR},
+      createDept = #{createdept,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateUser = #{updateuser,jdbcType=VARCHAR},
+      updateDept = #{updatedept,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      dictCode = #{dictcode,jdbcType=VARCHAR},
+      dictValue = #{dictvalue,jdbcType=VARCHAR},
+      dictType = #{dicttype,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

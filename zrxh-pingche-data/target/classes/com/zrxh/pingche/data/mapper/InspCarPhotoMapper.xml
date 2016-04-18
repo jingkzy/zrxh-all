@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrxh.pingche.data.dao.InspCarPhotoMapper" >
+  <resultMap id="BaseResultMap" type="com.zrxh.pingche.data.entity.InspCarPhoto" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createUser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createDept" property="createdept" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateUser" property="updateuser" jdbcType="VARCHAR" />
+    <result column="updateDept" property="updatedept" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="partCode" property="partcode" jdbcType="VARCHAR" />
+    <result column="partName" property="partname" jdbcType="VARCHAR" />
+    <result column="partNum" property="partnum" jdbcType="VARCHAR" />
+    <result column="photoUrl" property="photourl" jdbcType="VARCHAR" />
+    <result column="photoTime" property="phototime" jdbcType="TIMESTAMP" />
+    <result column="carInfoId" property="carinfoid" jdbcType="VARCHAR" />
+    <result column="addNumber" property="addnumber" jdbcType="VARCHAR" />
+    <result column="phototype" property="phototype" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="configureid" property="configureid" jdbcType="VARCHAR" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createUser, createDept, createTime, updateUser, updateDept, updateTime, partCode, 
+    partName, partNum, photoUrl, photoTime, carInfoId, addNumber, phototype, description, 
+    location, configureid, seq, isdel
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zrxh.pingche.data.entity.InspCarPhotoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from insp_car_photo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from insp_car_photo
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from insp_car_photo
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zrxh.pingche.data.entity.InspCarPhoto" >
+    insert into insp_car_photo (id, createUser, createDept, 
+      createTime, updateUser, updateDept, 
+      updateTime, partCode, partName, 
+      partNum, photoUrl, photoTime, 
+      carInfoId, addNumber, phototype, 
+      description, location, configureid, 
+      seq, isdel)
+    values (#{id,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createdept,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatedept,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{partcode,jdbcType=VARCHAR}, #{partname,jdbcType=VARCHAR}, 
+      #{partnum,jdbcType=VARCHAR}, #{photourl,jdbcType=VARCHAR}, #{phototime,jdbcType=TIMESTAMP}, 
+      #{carinfoid,jdbcType=VARCHAR}, #{addnumber,jdbcType=VARCHAR}, #{phototype,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{configureid,jdbcType=VARCHAR}, 
+      #{seq,jdbcType=INTEGER}, #{isdel,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrxh.pingche.data.entity.InspCarPhoto" >
+    insert into insp_car_photo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createuser != null" >
+        createUser,
+      </if>
+      <if test="createdept != null" >
+        createDept,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updateuser != null" >
+        updateUser,
+      </if>
+      <if test="updatedept != null" >
+        updateDept,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="partcode != null" >
+        partCode,
+      </if>
+      <if test="partname != null" >
+        partName,
+      </if>
+      <if test="partnum != null" >
+        partNum,
+      </if>
+      <if test="photourl != null" >
+        photoUrl,
+      </if>
+      <if test="phototime != null" >
+        photoTime,
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId,
+      </if>
+      <if test="addnumber != null" >
+        addNumber,
+      </if>
+      <if test="phototype != null" >
+        phototype,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="configureid != null" >
+        configureid,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="partcode != null" >
+        #{partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="partname != null" >
+        #{partname,jdbcType=VARCHAR},
+      </if>
+      <if test="partnum != null" >
+        #{partnum,jdbcType=VARCHAR},
+      </if>
+      <if test="photourl != null" >
+        #{photourl,jdbcType=VARCHAR},
+      </if>
+      <if test="phototime != null" >
+        #{phototime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="addnumber != null" >
+        #{addnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phototype != null" >
+        #{phototype,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="configureid != null" >
+        #{configureid,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrxh.pingche.data.entity.InspCarPhotoExample" resultType="java.lang.Integer" >
+    select count(*) from insp_car_photo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update insp_car_photo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuser != null" >
+        createUser = #{record.createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdept != null" >
+        createDept = #{record.createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateuser != null" >
+        updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedept != null" >
+        updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.partcode != null" >
+        partCode = #{record.partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partname != null" >
+        partName = #{record.partname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partnum != null" >
+        partNum = #{record.partnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photourl != null" >
+        photoUrl = #{record.photourl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phototime != null" >
+        photoTime = #{record.phototime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carinfoid != null" >
+        carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addnumber != null" >
+        addNumber = #{record.addnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phototype != null" >
+        phototype = #{record.phototype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configureid != null" >
+        configureid = #{record.configureid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seq != null" >
+        seq = #{record.seq,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdel != null" >
+        isdel = #{record.isdel,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update insp_car_photo
+    set id = #{record.id,jdbcType=VARCHAR},
+      createUser = #{record.createuser,jdbcType=VARCHAR},
+      createDept = #{record.createdept,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      partCode = #{record.partcode,jdbcType=VARCHAR},
+      partName = #{record.partname,jdbcType=VARCHAR},
+      partNum = #{record.partnum,jdbcType=VARCHAR},
+      photoUrl = #{record.photourl,jdbcType=VARCHAR},
+      photoTime = #{record.phototime,jdbcType=TIMESTAMP},
+      carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      addNumber = #{record.addnumber,jdbcType=VARCHAR},
+      phototype = #{record.phototype,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      configureid = #{record.configureid,jdbcType=VARCHAR},
+      seq = #{record.seq,jdbcType=INTEGER},
+      isdel = #{record.isdel,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrxh.pingche.data.entity.InspCarPhoto" >
+    update insp_car_photo
+    <set >
+      <if test="createuser != null" >
+        createUser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        createDept = #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        updateUser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        updateDept = #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="partcode != null" >
+        partCode = #{partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="partname != null" >
+        partName = #{partname,jdbcType=VARCHAR},
+      </if>
+      <if test="partnum != null" >
+        partNum = #{partnum,jdbcType=VARCHAR},
+      </if>
+      <if test="photourl != null" >
+        photoUrl = #{photourl,jdbcType=VARCHAR},
+      </if>
+      <if test="phototime != null" >
+        photoTime = #{phototime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="addnumber != null" >
+        addNumber = #{addnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phototype != null" >
+        phototype = #{phototype,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="configureid != null" >
+        configureid = #{configureid,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        isdel = #{isdel,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrxh.pingche.data.entity.InspCarPhoto" >
+    update insp_car_photo
+    set createUser = #{createuser,jdbcType=VARCHAR},
+      createDept = #{createdept,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateUser = #{updateuser,jdbcType=VARCHAR},
+      updateDept = #{updatedept,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      partCode = #{partcode,jdbcType=VARCHAR},
+      partName = #{partname,jdbcType=VARCHAR},
+      partNum = #{partnum,jdbcType=VARCHAR},
+      photoUrl = #{photourl,jdbcType=VARCHAR},
+      photoTime = #{phototime,jdbcType=TIMESTAMP},
+      carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      addNumber = #{addnumber,jdbcType=VARCHAR},
+      phototype = #{phototype,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      configureid = #{configureid,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

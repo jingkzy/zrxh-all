@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrxh.pingche.data.dao.InspCompreSituationMapper" >
+  <resultMap id="BaseResultMap" type="com.zrxh.pingche.data.entity.InspCompreSituation" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createUser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createDept" property="createdept" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateUser" property="updateuser" jdbcType="VARCHAR" />
+    <result column="updateDept" property="updatedept" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="carInfoId" property="carinfoid" jdbcType="VARCHAR" />
+    <result column="idleRadio" property="idleradio" jdbcType="VARCHAR" />
+    <result column="idleText" property="idletext" jdbcType="VARCHAR" />
+    <result column="idleBox" property="idlebox" jdbcType="VARCHAR" />
+    <result column="startingRadio" property="startingradio" jdbcType="VARCHAR" />
+    <result column="startingText" property="startingtext" jdbcType="VARCHAR" />
+    <result column="startingBox" property="startingbox" jdbcType="VARCHAR" />
+    <result column="steeringRadio" property="steeringradio" jdbcType="VARCHAR" />
+    <result column="steeringText" property="steeringtext" jdbcType="VARCHAR" />
+    <result column="steeringBox" property="steeringbox" jdbcType="VARCHAR" />
+    <result column="brakeRadio" property="brakeradio" jdbcType="VARCHAR" />
+    <result column="brakeText" property="braketext" jdbcType="VARCHAR" />
+    <result column="brakeBox" property="brakebox" jdbcType="VARCHAR" />
+    <result column="engineRadio" property="engineradio" jdbcType="VARCHAR" />
+    <result column="engineText" property="enginetext" jdbcType="VARCHAR" />
+    <result column="engineBox" property="enginebox" jdbcType="VARCHAR" />
+    <result column="transmissionRadio" property="transmissionradio" jdbcType="VARCHAR" />
+    <result column="transmissionText" property="transmissiontext" jdbcType="VARCHAR" />
+    <result column="transmissionBox" property="transmissionbox" jdbcType="VARCHAR" />
+    <result column="clutchRadio" property="clutchradio" jdbcType="VARCHAR" />
+    <result column="clutchText" property="clutchtext" jdbcType="VARCHAR" />
+    <result column="clutchBox" property="clutchbox" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createUser, createDept, createTime, updateUser, updateDept, updateTime, carInfoId, 
+    idleRadio, idleText, idleBox, startingRadio, startingText, startingBox, steeringRadio, 
+    steeringText, steeringBox, brakeRadio, brakeText, brakeBox, engineRadio, engineText, 
+    engineBox, transmissionRadio, transmissionText, transmissionBox, clutchRadio, clutchText, 
+    clutchBox, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zrxh.pingche.data.entity.InspCompreSituationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from insp_compre_situation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from insp_compre_situation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from insp_compre_situation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zrxh.pingche.data.entity.InspCompreSituation" >
+    insert into insp_compre_situation (id, createUser, createDept, 
+      createTime, updateUser, updateDept, 
+      updateTime, carInfoId, idleRadio, 
+      idleText, idleBox, startingRadio, 
+      startingText, startingBox, steeringRadio, 
+      steeringText, steeringBox, brakeRadio, 
+      brakeText, brakeBox, engineRadio, 
+      engineText, engineBox, transmissionRadio, 
+      transmissionText, transmissionBox, clutchRadio, 
+      clutchText, clutchBox, remark
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createdept,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatedept,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{carinfoid,jdbcType=VARCHAR}, #{idleradio,jdbcType=VARCHAR}, 
+      #{idletext,jdbcType=VARCHAR}, #{idlebox,jdbcType=VARCHAR}, #{startingradio,jdbcType=VARCHAR}, 
+      #{startingtext,jdbcType=VARCHAR}, #{startingbox,jdbcType=VARCHAR}, #{steeringradio,jdbcType=VARCHAR}, 
+      #{steeringtext,jdbcType=VARCHAR}, #{steeringbox,jdbcType=VARCHAR}, #{brakeradio,jdbcType=VARCHAR}, 
+      #{braketext,jdbcType=VARCHAR}, #{brakebox,jdbcType=VARCHAR}, #{engineradio,jdbcType=VARCHAR}, 
+      #{enginetext,jdbcType=VARCHAR}, #{enginebox,jdbcType=VARCHAR}, #{transmissionradio,jdbcType=VARCHAR}, 
+      #{transmissiontext,jdbcType=VARCHAR}, #{transmissionbox,jdbcType=VARCHAR}, #{clutchradio,jdbcType=VARCHAR}, 
+      #{clutchtext,jdbcType=VARCHAR}, #{clutchbox,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrxh.pingche.data.entity.InspCompreSituation" >
+    insert into insp_compre_situation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createuser != null" >
+        createUser,
+      </if>
+      <if test="createdept != null" >
+        createDept,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updateuser != null" >
+        updateUser,
+      </if>
+      <if test="updatedept != null" >
+        updateDept,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId,
+      </if>
+      <if test="idleradio != null" >
+        idleRadio,
+      </if>
+      <if test="idletext != null" >
+        idleText,
+      </if>
+      <if test="idlebox != null" >
+        idleBox,
+      </if>
+      <if test="startingradio != null" >
+        startingRadio,
+      </if>
+      <if test="startingtext != null" >
+        startingText,
+      </if>
+      <if test="startingbox != null" >
+        startingBox,
+      </if>
+      <if test="steeringradio != null" >
+        steeringRadio,
+      </if>
+      <if test="steeringtext != null" >
+        steeringText,
+      </if>
+      <if test="steeringbox != null" >
+        steeringBox,
+      </if>
+      <if test="brakeradio != null" >
+        brakeRadio,
+      </if>
+      <if test="braketext != null" >
+        brakeText,
+      </if>
+      <if test="brakebox != null" >
+        brakeBox,
+      </if>
+      <if test="engineradio != null" >
+        engineRadio,
+      </if>
+      <if test="enginetext != null" >
+        engineText,
+      </if>
+      <if test="enginebox != null" >
+        engineBox,
+      </if>
+      <if test="transmissionradio != null" >
+        transmissionRadio,
+      </if>
+      <if test="transmissiontext != null" >
+        transmissionText,
+      </if>
+      <if test="transmissionbox != null" >
+        transmissionBox,
+      </if>
+      <if test="clutchradio != null" >
+        clutchRadio,
+      </if>
+      <if test="clutchtext != null" >
+        clutchText,
+      </if>
+      <if test="clutchbox != null" >
+        clutchBox,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="idleradio != null" >
+        #{idleradio,jdbcType=VARCHAR},
+      </if>
+      <if test="idletext != null" >
+        #{idletext,jdbcType=VARCHAR},
+      </if>
+      <if test="idlebox != null" >
+        #{idlebox,jdbcType=VARCHAR},
+      </if>
+      <if test="startingradio != null" >
+        #{startingradio,jdbcType=VARCHAR},
+      </if>
+      <if test="startingtext != null" >
+        #{startingtext,jdbcType=VARCHAR},
+      </if>
+      <if test="startingbox != null" >
+        #{startingbox,jdbcType=VARCHAR},
+      </if>
+      <if test="steeringradio != null" >
+        #{steeringradio,jdbcType=VARCHAR},
+      </if>
+      <if test="steeringtext != null" >
+        #{steeringtext,jdbcType=VARCHAR},
+      </if>
+      <if test="steeringbox != null" >
+        #{steeringbox,jdbcType=VARCHAR},
+      </if>
+      <if test="brakeradio != null" >
+        #{brakeradio,jdbcType=VARCHAR},
+      </if>
+      <if test="braketext != null" >
+        #{braketext,jdbcType=VARCHAR},
+      </if>
+      <if test="brakebox != null" >
+        #{brakebox,jdbcType=VARCHAR},
+      </if>
+      <if test="engineradio != null" >
+        #{engineradio,jdbcType=VARCHAR},
+      </if>
+      <if test="enginetext != null" >
+        #{enginetext,jdbcType=VARCHAR},
+      </if>
+      <if test="enginebox != null" >
+        #{enginebox,jdbcType=VARCHAR},
+      </if>
+      <if test="transmissionradio != null" >
+        #{transmissionradio,jdbcType=VARCHAR},
+      </if>
+      <if test="transmissiontext != null" >
+        #{transmissiontext,jdbcType=VARCHAR},
+      </if>
+      <if test="transmissionbox != null" >
+        #{transmissionbox,jdbcType=VARCHAR},
+      </if>
+      <if test="clutchradio != null" >
+        #{clutchradio,jdbcType=VARCHAR},
+      </if>
+      <if test="clutchtext != null" >
+        #{clutchtext,jdbcType=VARCHAR},
+      </if>
+      <if test="clutchbox != null" >
+        #{clutchbox,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrxh.pingche.data.entity.InspCompreSituationExample" resultType="java.lang.Integer" >
+    select count(*) from insp_compre_situation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update insp_compre_situation
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuser != null" >
+        createUser = #{record.createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdept != null" >
+        createDept = #{record.createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateuser != null" >
+        updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedept != null" >
+        updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carinfoid != null" >
+        carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idleradio != null" >
+        idleRadio = #{record.idleradio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idletext != null" >
+        idleText = #{record.idletext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idlebox != null" >
+        idleBox = #{record.idlebox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startingradio != null" >
+        startingRadio = #{record.startingradio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startingtext != null" >
+        startingText = #{record.startingtext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startingbox != null" >
+        startingBox = #{record.startingbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.steeringradio != null" >
+        steeringRadio = #{record.steeringradio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.steeringtext != null" >
+        steeringText = #{record.steeringtext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.steeringbox != null" >
+        steeringBox = #{record.steeringbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brakeradio != null" >
+        brakeRadio = #{record.brakeradio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.braketext != null" >
+        brakeText = #{record.braketext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brakebox != null" >
+        brakeBox = #{record.brakebox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineradio != null" >
+        engineRadio = #{record.engineradio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enginetext != null" >
+        engineText = #{record.enginetext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enginebox != null" >
+        engineBox = #{record.enginebox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transmissionradio != null" >
+        transmissionRadio = #{record.transmissionradio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transmissiontext != null" >
+        transmissionText = #{record.transmissiontext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transmissionbox != null" >
+        transmissionBox = #{record.transmissionbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clutchradio != null" >
+        clutchRadio = #{record.clutchradio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clutchtext != null" >
+        clutchText = #{record.clutchtext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clutchbox != null" >
+        clutchBox = #{record.clutchbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update insp_compre_situation
+    set id = #{record.id,jdbcType=VARCHAR},
+      createUser = #{record.createuser,jdbcType=VARCHAR},
+      createDept = #{record.createdept,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      idleRadio = #{record.idleradio,jdbcType=VARCHAR},
+      idleText = #{record.idletext,jdbcType=VARCHAR},
+      idleBox = #{record.idlebox,jdbcType=VARCHAR},
+      startingRadio = #{record.startingradio,jdbcType=VARCHAR},
+      startingText = #{record.startingtext,jdbcType=VARCHAR},
+      startingBox = #{record.startingbox,jdbcType=VARCHAR},
+      steeringRadio = #{record.steeringradio,jdbcType=VARCHAR},
+      steeringText = #{record.steeringtext,jdbcType=VARCHAR},
+      steeringBox = #{record.steeringbox,jdbcType=VARCHAR},
+      brakeRadio = #{record.brakeradio,jdbcType=VARCHAR},
+      brakeText = #{record.braketext,jdbcType=VARCHAR},
+      brakeBox = #{record.brakebox,jdbcType=VARCHAR},
+      engineRadio = #{record.engineradio,jdbcType=VARCHAR},
+      engineText = #{record.enginetext,jdbcType=VARCHAR},
+      engineBox = #{record.enginebox,jdbcType=VARCHAR},
+      transmissionRadio = #{record.transmissionradio,jdbcType=VARCHAR},
+      transmissionText = #{record.transmissiontext,jdbcType=VARCHAR},
+      transmissionBox = #{record.transmissionbox,jdbcType=VARCHAR},
+      clutchRadio = #{record.clutchradio,jdbcType=VARCHAR},
+      clutchText = #{record.clutchtext,jdbcType=VARCHAR},
+      clutchBox = #{record.clutchbox,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrxh.pingche.data.entity.InspCompreSituation" >
+    update insp_compre_situation
+    <set >
+      <if test="createuser != null" >
+        createUser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        createDept = #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        updateUser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        updateDept = #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="idleradio != null" >
+        idleRadio = #{idleradio,jdbcType=VARCHAR},
+      </if>
+      <if test="idletext != null" >
+        idleText = #{idletext,jdbcType=VARCHAR},
+      </if>
+      <if test="idlebox != null" >
+        idleBox = #{idlebox,jdbcType=VARCHAR},
+      </if>
+      <if test="startingradio != null" >
+        startingRadio = #{startingradio,jdbcType=VARCHAR},
+      </if>
+      <if test="startingtext != null" >
+        startingText = #{startingtext,jdbcType=VARCHAR},
+      </if>
+      <if test="startingbox != null" >
+        startingBox = #{startingbox,jdbcType=VARCHAR},
+      </if>
+      <if test="steeringradio != null" >
+        steeringRadio = #{steeringradio,jdbcType=VARCHAR},
+      </if>
+      <if test="steeringtext != null" >
+        steeringText = #{steeringtext,jdbcType=VARCHAR},
+      </if>
+      <if test="steeringbox != null" >
+        steeringBox = #{steeringbox,jdbcType=VARCHAR},
+      </if>
+      <if test="brakeradio != null" >
+        brakeRadio = #{brakeradio,jdbcType=VARCHAR},
+      </if>
+      <if test="braketext != null" >
+        brakeText = #{braketext,jdbcType=VARCHAR},
+      </if>
+      <if test="brakebox != null" >
+        brakeBox = #{brakebox,jdbcType=VARCHAR},
+      </if>
+      <if test="engineradio != null" >
+        engineRadio = #{engineradio,jdbcType=VARCHAR},
+      </if>
+      <if test="enginetext != null" >
+        engineText = #{enginetext,jdbcType=VARCHAR},
+      </if>
+      <if test="enginebox != null" >
+        engineBox = #{enginebox,jdbcType=VARCHAR},
+      </if>
+      <if test="transmissionradio != null" >
+        transmissionRadio = #{transmissionradio,jdbcType=VARCHAR},
+      </if>
+      <if test="transmissiontext != null" >
+        transmissionText = #{transmissiontext,jdbcType=VARCHAR},
+      </if>
+      <if test="transmissionbox != null" >
+        transmissionBox = #{transmissionbox,jdbcType=VARCHAR},
+      </if>
+      <if test="clutchradio != null" >
+        clutchRadio = #{clutchradio,jdbcType=VARCHAR},
+      </if>
+      <if test="clutchtext != null" >
+        clutchText = #{clutchtext,jdbcType=VARCHAR},
+      </if>
+      <if test="clutchbox != null" >
+        clutchBox = #{clutchbox,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrxh.pingche.data.entity.InspCompreSituation" >
+    update insp_compre_situation
+    set createUser = #{createuser,jdbcType=VARCHAR},
+      createDept = #{createdept,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateUser = #{updateuser,jdbcType=VARCHAR},
+      updateDept = #{updatedept,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      idleRadio = #{idleradio,jdbcType=VARCHAR},
+      idleText = #{idletext,jdbcType=VARCHAR},
+      idleBox = #{idlebox,jdbcType=VARCHAR},
+      startingRadio = #{startingradio,jdbcType=VARCHAR},
+      startingText = #{startingtext,jdbcType=VARCHAR},
+      startingBox = #{startingbox,jdbcType=VARCHAR},
+      steeringRadio = #{steeringradio,jdbcType=VARCHAR},
+      steeringText = #{steeringtext,jdbcType=VARCHAR},
+      steeringBox = #{steeringbox,jdbcType=VARCHAR},
+      brakeRadio = #{brakeradio,jdbcType=VARCHAR},
+      brakeText = #{braketext,jdbcType=VARCHAR},
+      brakeBox = #{brakebox,jdbcType=VARCHAR},
+      engineRadio = #{engineradio,jdbcType=VARCHAR},
+      engineText = #{enginetext,jdbcType=VARCHAR},
+      engineBox = #{enginebox,jdbcType=VARCHAR},
+      transmissionRadio = #{transmissionradio,jdbcType=VARCHAR},
+      transmissionText = #{transmissiontext,jdbcType=VARCHAR},
+      transmissionBox = #{transmissionbox,jdbcType=VARCHAR},
+      clutchRadio = #{clutchradio,jdbcType=VARCHAR},
+      clutchText = #{clutchtext,jdbcType=VARCHAR},
+      clutchBox = #{clutchbox,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

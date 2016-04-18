@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrxh.pingche.data.dao.InspPhotoresultMapper" >
+  <resultMap id="BaseResultMap" type="com.zrxh.pingche.data.entity.InspPhotoresult" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="carInfoId" property="carinfoid" jdbcType="VARCHAR" />
+    <result column="paintphotoUrl" property="paintphotourl" jdbcType="VARCHAR" />
+    <result column="skeletonLeftphotoUrl" property="skeletonleftphotourl" jdbcType="VARCHAR" />
+    <result column="skeletonRightphotoUrl" property="skeletonrightphotourl" jdbcType="VARCHAR" />
+    <result column="exteriorUpUrl" property="exteriorupurl" jdbcType="VARCHAR" />
+    <result column="exteriorLeftUrl" property="exteriorlefturl" jdbcType="VARCHAR" />
+    <result column="exteriorCenterUrl" property="exteriorcenterurl" jdbcType="VARCHAR" />
+    <result column="exteriorRightUrl" property="exteriorrighturl" jdbcType="VARCHAR" />
+    <result column="exteriorDownUrl" property="exteriordownurl" jdbcType="VARCHAR" />
+    <result column="interiorUrl" property="interiorurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, carInfoId, paintphotoUrl, skeletonLeftphotoUrl, skeletonRightphotoUrl, exteriorUpUrl, 
+    exteriorLeftUrl, exteriorCenterUrl, exteriorRightUrl, exteriorDownUrl, interiorUrl
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zrxh.pingche.data.entity.InspPhotoresultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from insp_photoresult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from insp_photoresult
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from insp_photoresult
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zrxh.pingche.data.entity.InspPhotoresult" >
+    insert into insp_photoresult (id, carInfoId, paintphotoUrl, 
+      skeletonLeftphotoUrl, skeletonRightphotoUrl, 
+      exteriorUpUrl, exteriorLeftUrl, exteriorCenterUrl, 
+      exteriorRightUrl, exteriorDownUrl, interiorUrl
+      )
+    values (#{id,jdbcType=VARCHAR}, #{carinfoid,jdbcType=VARCHAR}, #{paintphotourl,jdbcType=VARCHAR}, 
+      #{skeletonleftphotourl,jdbcType=VARCHAR}, #{skeletonrightphotourl,jdbcType=VARCHAR}, 
+      #{exteriorupurl,jdbcType=VARCHAR}, #{exteriorlefturl,jdbcType=VARCHAR}, #{exteriorcenterurl,jdbcType=VARCHAR}, 
+      #{exteriorrighturl,jdbcType=VARCHAR}, #{exteriordownurl,jdbcType=VARCHAR}, #{interiorurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrxh.pingche.data.entity.InspPhotoresult" >
+    insert into insp_photoresult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId,
+      </if>
+      <if test="paintphotourl != null" >
+        paintphotoUrl,
+      </if>
+      <if test="skeletonleftphotourl != null" >
+        skeletonLeftphotoUrl,
+      </if>
+      <if test="skeletonrightphotourl != null" >
+        skeletonRightphotoUrl,
+      </if>
+      <if test="exteriorupurl != null" >
+        exteriorUpUrl,
+      </if>
+      <if test="exteriorlefturl != null" >
+        exteriorLeftUrl,
+      </if>
+      <if test="exteriorcenterurl != null" >
+        exteriorCenterUrl,
+      </if>
+      <if test="exteriorrighturl != null" >
+        exteriorRightUrl,
+      </if>
+      <if test="exteriordownurl != null" >
+        exteriorDownUrl,
+      </if>
+      <if test="interiorurl != null" >
+        interiorUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="carinfoid != null" >
+        #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="paintphotourl != null" >
+        #{paintphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="skeletonleftphotourl != null" >
+        #{skeletonleftphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="skeletonrightphotourl != null" >
+        #{skeletonrightphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorupurl != null" >
+        #{exteriorupurl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorlefturl != null" >
+        #{exteriorlefturl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorcenterurl != null" >
+        #{exteriorcenterurl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorrighturl != null" >
+        #{exteriorrighturl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriordownurl != null" >
+        #{exteriordownurl,jdbcType=VARCHAR},
+      </if>
+      <if test="interiorurl != null" >
+        #{interiorurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrxh.pingche.data.entity.InspPhotoresultExample" resultType="java.lang.Integer" >
+    select count(*) from insp_photoresult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update insp_photoresult
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carinfoid != null" >
+        carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paintphotourl != null" >
+        paintphotoUrl = #{record.paintphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skeletonleftphotourl != null" >
+        skeletonLeftphotoUrl = #{record.skeletonleftphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skeletonrightphotourl != null" >
+        skeletonRightphotoUrl = #{record.skeletonrightphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exteriorupurl != null" >
+        exteriorUpUrl = #{record.exteriorupurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exteriorlefturl != null" >
+        exteriorLeftUrl = #{record.exteriorlefturl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exteriorcenterurl != null" >
+        exteriorCenterUrl = #{record.exteriorcenterurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exteriorrighturl != null" >
+        exteriorRightUrl = #{record.exteriorrighturl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exteriordownurl != null" >
+        exteriorDownUrl = #{record.exteriordownurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interiorurl != null" >
+        interiorUrl = #{record.interiorurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update insp_photoresult
+    set id = #{record.id,jdbcType=VARCHAR},
+      carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      paintphotoUrl = #{record.paintphotourl,jdbcType=VARCHAR},
+      skeletonLeftphotoUrl = #{record.skeletonleftphotourl,jdbcType=VARCHAR},
+      skeletonRightphotoUrl = #{record.skeletonrightphotourl,jdbcType=VARCHAR},
+      exteriorUpUrl = #{record.exteriorupurl,jdbcType=VARCHAR},
+      exteriorLeftUrl = #{record.exteriorlefturl,jdbcType=VARCHAR},
+      exteriorCenterUrl = #{record.exteriorcenterurl,jdbcType=VARCHAR},
+      exteriorRightUrl = #{record.exteriorrighturl,jdbcType=VARCHAR},
+      exteriorDownUrl = #{record.exteriordownurl,jdbcType=VARCHAR},
+      interiorUrl = #{record.interiorurl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrxh.pingche.data.entity.InspPhotoresult" >
+    update insp_photoresult
+    <set >
+      <if test="carinfoid != null" >
+        carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="paintphotourl != null" >
+        paintphotoUrl = #{paintphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="skeletonleftphotourl != null" >
+        skeletonLeftphotoUrl = #{skeletonleftphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="skeletonrightphotourl != null" >
+        skeletonRightphotoUrl = #{skeletonrightphotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorupurl != null" >
+        exteriorUpUrl = #{exteriorupurl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorlefturl != null" >
+        exteriorLeftUrl = #{exteriorlefturl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorcenterurl != null" >
+        exteriorCenterUrl = #{exteriorcenterurl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorrighturl != null" >
+        exteriorRightUrl = #{exteriorrighturl,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriordownurl != null" >
+        exteriorDownUrl = #{exteriordownurl,jdbcType=VARCHAR},
+      </if>
+      <if test="interiorurl != null" >
+        interiorUrl = #{interiorurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrxh.pingche.data.entity.InspPhotoresult" >
+    update insp_photoresult
+    set carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      paintphotoUrl = #{paintphotourl,jdbcType=VARCHAR},
+      skeletonLeftphotoUrl = #{skeletonleftphotourl,jdbcType=VARCHAR},
+      skeletonRightphotoUrl = #{skeletonrightphotourl,jdbcType=VARCHAR},
+      exteriorUpUrl = #{exteriorupurl,jdbcType=VARCHAR},
+      exteriorLeftUrl = #{exteriorlefturl,jdbcType=VARCHAR},
+      exteriorCenterUrl = #{exteriorcenterurl,jdbcType=VARCHAR},
+      exteriorRightUrl = #{exteriorrighturl,jdbcType=VARCHAR},
+      exteriorDownUrl = #{exteriordownurl,jdbcType=VARCHAR},
+      interiorUrl = #{interiorurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

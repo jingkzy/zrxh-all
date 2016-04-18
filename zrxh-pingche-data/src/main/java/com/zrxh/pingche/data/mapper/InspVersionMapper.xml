@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrxh.pingche.data.dao.InspVersionMapper" >
+  <resultMap id="BaseResultMap" type="com.zrxh.pingche.data.entity.InspVersion" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clientversion" property="clientversion" jdbcType="VARCHAR" />
+    <result column="clientcode" property="clientcode" jdbcType="INTEGER" />
+    <result column="enablestatus" property="enablestatus" jdbcType="INTEGER" />
+    <result column="downurl" property="downurl" jdbcType="VARCHAR" />
+    <result column="changelist" property="changelist" jdbcType="VARCHAR" />
+    <result column="updateinstall" property="updateinstall" jdbcType="INTEGER" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, clientversion, clientcode, enablestatus, downurl, changelist, updateinstall, 
+    createuser, createtime, platform, filename
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zrxh.pingche.data.entity.InspVersionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from insp_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from insp_version
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from insp_version
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zrxh.pingche.data.entity.InspVersion" >
+    insert into insp_version (id, clientversion, clientcode, 
+      enablestatus, downurl, changelist, 
+      updateinstall, createuser, createtime, 
+      platform, filename)
+    values (#{id,jdbcType=INTEGER}, #{clientversion,jdbcType=VARCHAR}, #{clientcode,jdbcType=INTEGER}, 
+      #{enablestatus,jdbcType=INTEGER}, #{downurl,jdbcType=VARCHAR}, #{changelist,jdbcType=VARCHAR}, 
+      #{updateinstall,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{platform,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrxh.pingche.data.entity.InspVersion" >
+    insert into insp_version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clientversion != null" >
+        clientversion,
+      </if>
+      <if test="clientcode != null" >
+        clientcode,
+      </if>
+      <if test="enablestatus != null" >
+        enablestatus,
+      </if>
+      <if test="downurl != null" >
+        downurl,
+      </if>
+      <if test="changelist != null" >
+        changelist,
+      </if>
+      <if test="updateinstall != null" >
+        updateinstall,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="filename != null" >
+        filename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clientversion != null" >
+        #{clientversion,jdbcType=VARCHAR},
+      </if>
+      <if test="clientcode != null" >
+        #{clientcode,jdbcType=INTEGER},
+      </if>
+      <if test="enablestatus != null" >
+        #{enablestatus,jdbcType=INTEGER},
+      </if>
+      <if test="downurl != null" >
+        #{downurl,jdbcType=VARCHAR},
+      </if>
+      <if test="changelist != null" >
+        #{changelist,jdbcType=VARCHAR},
+      </if>
+      <if test="updateinstall != null" >
+        #{updateinstall,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrxh.pingche.data.entity.InspVersionExample" resultType="java.lang.Integer" >
+    select count(*) from insp_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update insp_version
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientversion != null" >
+        clientversion = #{record.clientversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientcode != null" >
+        clientcode = #{record.clientcode,jdbcType=INTEGER},
+      </if>
+      <if test="record.enablestatus != null" >
+        enablestatus = #{record.enablestatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.downurl != null" >
+        downurl = #{record.downurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changelist != null" >
+        changelist = #{record.changelist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateinstall != null" >
+        updateinstall = #{record.updateinstall,jdbcType=INTEGER},
+      </if>
+      <if test="record.createuser != null" >
+        createuser = #{record.createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platform != null" >
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filename != null" >
+        filename = #{record.filename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update insp_version
+    set id = #{record.id,jdbcType=INTEGER},
+      clientversion = #{record.clientversion,jdbcType=VARCHAR},
+      clientcode = #{record.clientcode,jdbcType=INTEGER},
+      enablestatus = #{record.enablestatus,jdbcType=INTEGER},
+      downurl = #{record.downurl,jdbcType=VARCHAR},
+      changelist = #{record.changelist,jdbcType=VARCHAR},
+      updateinstall = #{record.updateinstall,jdbcType=INTEGER},
+      createuser = #{record.createuser,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      filename = #{record.filename,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrxh.pingche.data.entity.InspVersion" >
+    update insp_version
+    <set >
+      <if test="clientversion != null" >
+        clientversion = #{clientversion,jdbcType=VARCHAR},
+      </if>
+      <if test="clientcode != null" >
+        clientcode = #{clientcode,jdbcType=INTEGER},
+      </if>
+      <if test="enablestatus != null" >
+        enablestatus = #{enablestatus,jdbcType=INTEGER},
+      </if>
+      <if test="downurl != null" >
+        downurl = #{downurl,jdbcType=VARCHAR},
+      </if>
+      <if test="changelist != null" >
+        changelist = #{changelist,jdbcType=VARCHAR},
+      </if>
+      <if test="updateinstall != null" >
+        updateinstall = #{updateinstall,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        createuser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrxh.pingche.data.entity.InspVersion" >
+    update insp_version
+    set clientversion = #{clientversion,jdbcType=VARCHAR},
+      clientcode = #{clientcode,jdbcType=INTEGER},
+      enablestatus = #{enablestatus,jdbcType=INTEGER},
+      downurl = #{downurl,jdbcType=VARCHAR},
+      changelist = #{changelist,jdbcType=VARCHAR},
+      updateinstall = #{updateinstall,jdbcType=INTEGER},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      platform = #{platform,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

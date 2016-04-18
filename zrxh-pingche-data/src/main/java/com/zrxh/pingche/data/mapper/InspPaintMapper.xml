@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrxh.pingche.data.dao.InspPaintMapper" >
+  <resultMap id="BaseResultMap" type="com.zrxh.pingche.data.entity.InspPaint" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createUser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createDept" property="createdept" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateUser" property="updateuser" jdbcType="VARCHAR" />
+    <result column="updateDept" property="updatedept" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="carInfoId" property="carinfoid" jdbcType="VARCHAR" />
+    <result column="leftPostA" property="leftposta" jdbcType="VARCHAR" />
+    <result column="leftPostB" property="leftpostb" jdbcType="VARCHAR" />
+    <result column="leftPostC" property="leftpostc" jdbcType="VARCHAR" />
+    <result column="rightPostA" property="rightposta" jdbcType="VARCHAR" />
+    <result column="rightPostB" property="rightpostb" jdbcType="VARCHAR" />
+    <result column="rightPostC" property="rightpostc" jdbcType="VARCHAR" />
+    <result column="frontGuard" property="frontguard" jdbcType="VARCHAR" />
+    <result column="rearGuard" property="rearguard" jdbcType="VARCHAR" />
+    <result column="engineHatch" property="enginehatch" jdbcType="VARCHAR" />
+    <result column="trunkHatch" property="trunkhatch" jdbcType="VARCHAR" />
+    <result column="carRoof" property="carroof" jdbcType="VARCHAR" />
+    <result column="leftFrontFender" property="leftfrontfender" jdbcType="VARCHAR" />
+    <result column="rightFrontFender" property="rightfrontfender" jdbcType="VARCHAR" />
+    <result column="leftFrontDoor" property="leftfrontdoor" jdbcType="VARCHAR" />
+    <result column="rightFrontDoor" property="rightfrontdoor" jdbcType="VARCHAR" />
+    <result column="leftBackDoor" property="leftbackdoor" jdbcType="VARCHAR" />
+    <result column="rightBackDoor" property="rightbackdoor" jdbcType="VARCHAR" />
+    <result column="leftBackFender" property="leftbackfender" jdbcType="VARCHAR" />
+    <result column="rightBackFender" property="rightbackfender" jdbcType="VARCHAR" />
+    <result column="carPartName" property="carpartname" jdbcType="VARCHAR" />
+    <result column="isCarPaint" property="iscarpaint" jdbcType="VARCHAR" />
+    <result column="x" property="x" jdbcType="INTEGER" />
+    <result column="y" property="y" jdbcType="INTEGER" />
+    <result column="viewId" property="viewid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createUser, createDept, createTime, updateUser, updateDept, updateTime, carInfoId, 
+    leftPostA, leftPostB, leftPostC, rightPostA, rightPostB, rightPostC, frontGuard, 
+    rearGuard, engineHatch, trunkHatch, carRoof, leftFrontFender, rightFrontFender, leftFrontDoor, 
+    rightFrontDoor, leftBackDoor, rightBackDoor, leftBackFender, rightBackFender, carPartName, 
+    isCarPaint, x, y, viewId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zrxh.pingche.data.entity.InspPaintExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from insp_paint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from insp_paint
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from insp_paint
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zrxh.pingche.data.entity.InspPaint" >
+    insert into insp_paint (id, createUser, createDept, 
+      createTime, updateUser, updateDept, 
+      updateTime, carInfoId, leftPostA, 
+      leftPostB, leftPostC, rightPostA, 
+      rightPostB, rightPostC, frontGuard, 
+      rearGuard, engineHatch, trunkHatch, 
+      carRoof, leftFrontFender, rightFrontFender, 
+      leftFrontDoor, rightFrontDoor, leftBackDoor, 
+      rightBackDoor, leftBackFender, rightBackFender, 
+      carPartName, isCarPaint, x, 
+      y, viewId)
+    values (#{id,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createdept,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{updatedept,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{carinfoid,jdbcType=VARCHAR}, #{leftposta,jdbcType=VARCHAR}, 
+      #{leftpostb,jdbcType=VARCHAR}, #{leftpostc,jdbcType=VARCHAR}, #{rightposta,jdbcType=VARCHAR}, 
+      #{rightpostb,jdbcType=VARCHAR}, #{rightpostc,jdbcType=VARCHAR}, #{frontguard,jdbcType=VARCHAR}, 
+      #{rearguard,jdbcType=VARCHAR}, #{enginehatch,jdbcType=VARCHAR}, #{trunkhatch,jdbcType=VARCHAR}, 
+      #{carroof,jdbcType=VARCHAR}, #{leftfrontfender,jdbcType=VARCHAR}, #{rightfrontfender,jdbcType=VARCHAR}, 
+      #{leftfrontdoor,jdbcType=VARCHAR}, #{rightfrontdoor,jdbcType=VARCHAR}, #{leftbackdoor,jdbcType=VARCHAR}, 
+      #{rightbackdoor,jdbcType=VARCHAR}, #{leftbackfender,jdbcType=VARCHAR}, #{rightbackfender,jdbcType=VARCHAR}, 
+      #{carpartname,jdbcType=VARCHAR}, #{iscarpaint,jdbcType=VARCHAR}, #{x,jdbcType=INTEGER}, 
+      #{y,jdbcType=INTEGER}, #{viewid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrxh.pingche.data.entity.InspPaint" >
+    insert into insp_paint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createuser != null" >
+        createUser,
+      </if>
+      <if test="createdept != null" >
+        createDept,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updateuser != null" >
+        updateUser,
+      </if>
+      <if test="updatedept != null" >
+        updateDept,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId,
+      </if>
+      <if test="leftposta != null" >
+        leftPostA,
+      </if>
+      <if test="leftpostb != null" >
+        leftPostB,
+      </if>
+      <if test="leftpostc != null" >
+        leftPostC,
+      </if>
+      <if test="rightposta != null" >
+        rightPostA,
+      </if>
+      <if test="rightpostb != null" >
+        rightPostB,
+      </if>
+      <if test="rightpostc != null" >
+        rightPostC,
+      </if>
+      <if test="frontguard != null" >
+        frontGuard,
+      </if>
+      <if test="rearguard != null" >
+        rearGuard,
+      </if>
+      <if test="enginehatch != null" >
+        engineHatch,
+      </if>
+      <if test="trunkhatch != null" >
+        trunkHatch,
+      </if>
+      <if test="carroof != null" >
+        carRoof,
+      </if>
+      <if test="leftfrontfender != null" >
+        leftFrontFender,
+      </if>
+      <if test="rightfrontfender != null" >
+        rightFrontFender,
+      </if>
+      <if test="leftfrontdoor != null" >
+        leftFrontDoor,
+      </if>
+      <if test="rightfrontdoor != null" >
+        rightFrontDoor,
+      </if>
+      <if test="leftbackdoor != null" >
+        leftBackDoor,
+      </if>
+      <if test="rightbackdoor != null" >
+        rightBackDoor,
+      </if>
+      <if test="leftbackfender != null" >
+        leftBackFender,
+      </if>
+      <if test="rightbackfender != null" >
+        rightBackFender,
+      </if>
+      <if test="carpartname != null" >
+        carPartName,
+      </if>
+      <if test="iscarpaint != null" >
+        isCarPaint,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="viewid != null" >
+        viewId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="leftposta != null" >
+        #{leftposta,jdbcType=VARCHAR},
+      </if>
+      <if test="leftpostb != null" >
+        #{leftpostb,jdbcType=VARCHAR},
+      </if>
+      <if test="leftpostc != null" >
+        #{leftpostc,jdbcType=VARCHAR},
+      </if>
+      <if test="rightposta != null" >
+        #{rightposta,jdbcType=VARCHAR},
+      </if>
+      <if test="rightpostb != null" >
+        #{rightpostb,jdbcType=VARCHAR},
+      </if>
+      <if test="rightpostc != null" >
+        #{rightpostc,jdbcType=VARCHAR},
+      </if>
+      <if test="frontguard != null" >
+        #{frontguard,jdbcType=VARCHAR},
+      </if>
+      <if test="rearguard != null" >
+        #{rearguard,jdbcType=VARCHAR},
+      </if>
+      <if test="enginehatch != null" >
+        #{enginehatch,jdbcType=VARCHAR},
+      </if>
+      <if test="trunkhatch != null" >
+        #{trunkhatch,jdbcType=VARCHAR},
+      </if>
+      <if test="carroof != null" >
+        #{carroof,jdbcType=VARCHAR},
+      </if>
+      <if test="leftfrontfender != null" >
+        #{leftfrontfender,jdbcType=VARCHAR},
+      </if>
+      <if test="rightfrontfender != null" >
+        #{rightfrontfender,jdbcType=VARCHAR},
+      </if>
+      <if test="leftfrontdoor != null" >
+        #{leftfrontdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="rightfrontdoor != null" >
+        #{rightfrontdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="leftbackdoor != null" >
+        #{leftbackdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="rightbackdoor != null" >
+        #{rightbackdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="leftbackfender != null" >
+        #{leftbackfender,jdbcType=VARCHAR},
+      </if>
+      <if test="rightbackfender != null" >
+        #{rightbackfender,jdbcType=VARCHAR},
+      </if>
+      <if test="carpartname != null" >
+        #{carpartname,jdbcType=VARCHAR},
+      </if>
+      <if test="iscarpaint != null" >
+        #{iscarpaint,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=INTEGER},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=INTEGER},
+      </if>
+      <if test="viewid != null" >
+        #{viewid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrxh.pingche.data.entity.InspPaintExample" resultType="java.lang.Integer" >
+    select count(*) from insp_paint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update insp_paint
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuser != null" >
+        createUser = #{record.createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdept != null" >
+        createDept = #{record.createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateuser != null" >
+        updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedept != null" >
+        updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carinfoid != null" >
+        carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftposta != null" >
+        leftPostA = #{record.leftposta,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftpostb != null" >
+        leftPostB = #{record.leftpostb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftpostc != null" >
+        leftPostC = #{record.leftpostc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightposta != null" >
+        rightPostA = #{record.rightposta,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightpostb != null" >
+        rightPostB = #{record.rightpostb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightpostc != null" >
+        rightPostC = #{record.rightpostc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frontguard != null" >
+        frontGuard = #{record.frontguard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rearguard != null" >
+        rearGuard = #{record.rearguard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enginehatch != null" >
+        engineHatch = #{record.enginehatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trunkhatch != null" >
+        trunkHatch = #{record.trunkhatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carroof != null" >
+        carRoof = #{record.carroof,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftfrontfender != null" >
+        leftFrontFender = #{record.leftfrontfender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightfrontfender != null" >
+        rightFrontFender = #{record.rightfrontfender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftfrontdoor != null" >
+        leftFrontDoor = #{record.leftfrontdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightfrontdoor != null" >
+        rightFrontDoor = #{record.rightfrontdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftbackdoor != null" >
+        leftBackDoor = #{record.leftbackdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightbackdoor != null" >
+        rightBackDoor = #{record.rightbackdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftbackfender != null" >
+        leftBackFender = #{record.leftbackfender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightbackfender != null" >
+        rightBackFender = #{record.rightbackfender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carpartname != null" >
+        carPartName = #{record.carpartname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iscarpaint != null" >
+        isCarPaint = #{record.iscarpaint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.x != null" >
+        x = #{record.x,jdbcType=INTEGER},
+      </if>
+      <if test="record.y != null" >
+        y = #{record.y,jdbcType=INTEGER},
+      </if>
+      <if test="record.viewid != null" >
+        viewId = #{record.viewid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update insp_paint
+    set id = #{record.id,jdbcType=VARCHAR},
+      createUser = #{record.createuser,jdbcType=VARCHAR},
+      createDept = #{record.createdept,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      updateDept = #{record.updatedept,jdbcType=VARCHAR},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      carInfoId = #{record.carinfoid,jdbcType=VARCHAR},
+      leftPostA = #{record.leftposta,jdbcType=VARCHAR},
+      leftPostB = #{record.leftpostb,jdbcType=VARCHAR},
+      leftPostC = #{record.leftpostc,jdbcType=VARCHAR},
+      rightPostA = #{record.rightposta,jdbcType=VARCHAR},
+      rightPostB = #{record.rightpostb,jdbcType=VARCHAR},
+      rightPostC = #{record.rightpostc,jdbcType=VARCHAR},
+      frontGuard = #{record.frontguard,jdbcType=VARCHAR},
+      rearGuard = #{record.rearguard,jdbcType=VARCHAR},
+      engineHatch = #{record.enginehatch,jdbcType=VARCHAR},
+      trunkHatch = #{record.trunkhatch,jdbcType=VARCHAR},
+      carRoof = #{record.carroof,jdbcType=VARCHAR},
+      leftFrontFender = #{record.leftfrontfender,jdbcType=VARCHAR},
+      rightFrontFender = #{record.rightfrontfender,jdbcType=VARCHAR},
+      leftFrontDoor = #{record.leftfrontdoor,jdbcType=VARCHAR},
+      rightFrontDoor = #{record.rightfrontdoor,jdbcType=VARCHAR},
+      leftBackDoor = #{record.leftbackdoor,jdbcType=VARCHAR},
+      rightBackDoor = #{record.rightbackdoor,jdbcType=VARCHAR},
+      leftBackFender = #{record.leftbackfender,jdbcType=VARCHAR},
+      rightBackFender = #{record.rightbackfender,jdbcType=VARCHAR},
+      carPartName = #{record.carpartname,jdbcType=VARCHAR},
+      isCarPaint = #{record.iscarpaint,jdbcType=VARCHAR},
+      x = #{record.x,jdbcType=INTEGER},
+      y = #{record.y,jdbcType=INTEGER},
+      viewId = #{record.viewid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrxh.pingche.data.entity.InspPaint" >
+    update insp_paint
+    <set >
+      <if test="createuser != null" >
+        createUser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdept != null" >
+        createDept = #{createdept,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        updateUser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedept != null" >
+        updateDept = #{updatedept,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carinfoid != null" >
+        carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="leftposta != null" >
+        leftPostA = #{leftposta,jdbcType=VARCHAR},
+      </if>
+      <if test="leftpostb != null" >
+        leftPostB = #{leftpostb,jdbcType=VARCHAR},
+      </if>
+      <if test="leftpostc != null" >
+        leftPostC = #{leftpostc,jdbcType=VARCHAR},
+      </if>
+      <if test="rightposta != null" >
+        rightPostA = #{rightposta,jdbcType=VARCHAR},
+      </if>
+      <if test="rightpostb != null" >
+        rightPostB = #{rightpostb,jdbcType=VARCHAR},
+      </if>
+      <if test="rightpostc != null" >
+        rightPostC = #{rightpostc,jdbcType=VARCHAR},
+      </if>
+      <if test="frontguard != null" >
+        frontGuard = #{frontguard,jdbcType=VARCHAR},
+      </if>
+      <if test="rearguard != null" >
+        rearGuard = #{rearguard,jdbcType=VARCHAR},
+      </if>
+      <if test="enginehatch != null" >
+        engineHatch = #{enginehatch,jdbcType=VARCHAR},
+      </if>
+      <if test="trunkhatch != null" >
+        trunkHatch = #{trunkhatch,jdbcType=VARCHAR},
+      </if>
+      <if test="carroof != null" >
+        carRoof = #{carroof,jdbcType=VARCHAR},
+      </if>
+      <if test="leftfrontfender != null" >
+        leftFrontFender = #{leftfrontfender,jdbcType=VARCHAR},
+      </if>
+      <if test="rightfrontfender != null" >
+        rightFrontFender = #{rightfrontfender,jdbcType=VARCHAR},
+      </if>
+      <if test="leftfrontdoor != null" >
+        leftFrontDoor = #{leftfrontdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="rightfrontdoor != null" >
+        rightFrontDoor = #{rightfrontdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="leftbackdoor != null" >
+        leftBackDoor = #{leftbackdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="rightbackdoor != null" >
+        rightBackDoor = #{rightbackdoor,jdbcType=VARCHAR},
+      </if>
+      <if test="leftbackfender != null" >
+        leftBackFender = #{leftbackfender,jdbcType=VARCHAR},
+      </if>
+      <if test="rightbackfender != null" >
+        rightBackFender = #{rightbackfender,jdbcType=VARCHAR},
+      </if>
+      <if test="carpartname != null" >
+        carPartName = #{carpartname,jdbcType=VARCHAR},
+      </if>
+      <if test="iscarpaint != null" >
+        isCarPaint = #{iscarpaint,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=INTEGER},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=INTEGER},
+      </if>
+      <if test="viewid != null" >
+        viewId = #{viewid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrxh.pingche.data.entity.InspPaint" >
+    update insp_paint
+    set createUser = #{createuser,jdbcType=VARCHAR},
+      createDept = #{createdept,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateUser = #{updateuser,jdbcType=VARCHAR},
+      updateDept = #{updatedept,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      carInfoId = #{carinfoid,jdbcType=VARCHAR},
+      leftPostA = #{leftposta,jdbcType=VARCHAR},
+      leftPostB = #{leftpostb,jdbcType=VARCHAR},
+      leftPostC = #{leftpostc,jdbcType=VARCHAR},
+      rightPostA = #{rightposta,jdbcType=VARCHAR},
+      rightPostB = #{rightpostb,jdbcType=VARCHAR},
+      rightPostC = #{rightpostc,jdbcType=VARCHAR},
+      frontGuard = #{frontguard,jdbcType=VARCHAR},
+      rearGuard = #{rearguard,jdbcType=VARCHAR},
+      engineHatch = #{enginehatch,jdbcType=VARCHAR},
+      trunkHatch = #{trunkhatch,jdbcType=VARCHAR},
+      carRoof = #{carroof,jdbcType=VARCHAR},
+      leftFrontFender = #{leftfrontfender,jdbcType=VARCHAR},
+      rightFrontFender = #{rightfrontfender,jdbcType=VARCHAR},
+      leftFrontDoor = #{leftfrontdoor,jdbcType=VARCHAR},
+      rightFrontDoor = #{rightfrontdoor,jdbcType=VARCHAR},
+      leftBackDoor = #{leftbackdoor,jdbcType=VARCHAR},
+      rightBackDoor = #{rightbackdoor,jdbcType=VARCHAR},
+      leftBackFender = #{leftbackfender,jdbcType=VARCHAR},
+      rightBackFender = #{rightbackfender,jdbcType=VARCHAR},
+      carPartName = #{carpartname,jdbcType=VARCHAR},
+      isCarPaint = #{iscarpaint,jdbcType=VARCHAR},
+      x = #{x,jdbcType=INTEGER},
+      y = #{y,jdbcType=INTEGER},
+      viewId = #{viewid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
