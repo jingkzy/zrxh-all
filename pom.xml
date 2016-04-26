@@ -43,5 +43,6 @@
     <module>zrxh-pingche-data</module>
     <module>zrxh-ucenter-data</module>
     <module>zrxh-oa</module>
+    <module>zrxh-search</module>
   </modules>
 </project>
