@@ -1,9 +1,9 @@
-¢Ù µÇÂ¼½çÃæ£¨ui£©
+â‘  ç™»å½•ç•Œé¢ï¼ˆuiï¼‰
     |
-¢Ú µÇÂ¼½Ó¿Ú£¨dcenter£©
+â‘¡ ç™»å½•æŽ¥å£ï¼ˆdcenterï¼‰
     |
-¢Û µÇÂ¼·þÎñ£¨service£©
+â‘¢ ç™»å½•æœåŠ¡ï¼ˆserviceï¼‰
     |
-¢Ü µÇÂ¼ºËÐÄ£¨core£©
+â‘£ ç™»å½•æ ¸å¿ƒï¼ˆcoreï¼‰
     |
-¢Ý µÇÂ¼Êý¾Ý£¨data£©
+â‘¤ ç™»å½•æ•°æ®ï¼ˆdataï¼‰
