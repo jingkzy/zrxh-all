@@ -273,13 +273,13 @@
             <version>2.0.1</version>
         </dependency>
 
-        <!-- jdbc driver -->
+        <!-- jdbc driver 
         <dependency>
             <groupId>${jdbc.driver.groupId}</groupId>
             <artifactId>${jdbc.driver.artifactId}</artifactId>
             <version>${jdbc.driver.version}</version>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
         <!-- PERSISTENCE end -->
 
         <!-- WEB begin -->
@@ -581,5 +581,19 @@
                 </resources>
             </build>
         </profile>
+        
+        <profile>
+	        <id>jdk-1.7</id>
+	        <!-- 另外一种激活方式 -->
+	        <activation>
+	            <activeByDefault>true</activeByDefault>
+	            <jdk>1.7</jdk>
+	        </activation>
+	        <properties>
+	            <maven.compiler.source>1.7</maven.compiler.source>
+	            <maven.compiler.target>1.7</maven.compiler.target>
+	<maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
+	        </properties>
+	    </profile>
     </profiles>
 </project>
