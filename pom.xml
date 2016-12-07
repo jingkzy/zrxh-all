@@ -44,5 +44,10 @@
     <module>zrxh-ucenter-data</module>
     <module>zrxh-oa</module>
     <module>zrxh-search</module>
+    <module>zrxh-activiti</module>
+    <module>zrxh-drools</module>
+    <module>zrxh-gerenator</module>
+    <module>zrxh-jmx</module>
+    <module>zrxh-weixin</module>
   </modules>
 </project>
