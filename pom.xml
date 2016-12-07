@@ -8,6 +8,7 @@
   <name>zrxh-all</name>
   
   <properties>
+  	<test>e33</test>
 	<maven.test.skip>true</maven.test.skip>
 	<maven.test.failure.ignore>true</maven.test.failure.ignore>
 	<version.compiler-plugin>3.1</version.compiler-plugin>
