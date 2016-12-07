@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.wukong.weixin" />
+	<import resource="classpath:spring-ehcache.xml" />
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<!-- 配置Controller中返回文本（譬如返回的是XML文档）的编码（防止中文乱码），类似于下面的语句： response.setCharacterEncoding("UTF-8");response.setContentType("UTF-8"); -->
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+							<value>text/xml;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+		<property name="customArgumentResolver">
+			<ref bean="userArgumentResolver" />
+		</property>
+	</bean>
+	<bean id="userArgumentResolver" class="com.wukong.weixin.web.UserArgumentResolver" />
+	<!-- spring具有将数据转化后再交给controller的功能，spring 3 新增了对json的处理能力， 是基于Jackson JSON 
+		Processor（http://jackson.codehaus.org/）的， 使用时要配置一下在上面的AnnotationMethodHandlerAdapter配置中引用这个bean -->
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
+	<!--对静态资源文件的访问 -->
+	<mvc:resources mapping="/static/**" location="/static/" />
+</beans>

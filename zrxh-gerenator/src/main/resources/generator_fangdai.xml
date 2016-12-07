@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱动包位置 -->
+	<classPathEntry location="D:\\configure\\mysql-connector-java-5.1.29.jar" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<plugin type="com.zrxh.generator.PaginationPlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" /> 
+		<commentGenerator>
+			<property name="suppressDate" value="true"/>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/fangdai" userId="root" password="root">
+		<!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa"> -->
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.zrxh.fangdai.data.entity" targetProject="zrxh-fangdai-data\\src\\main\\java\\">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 生成的映射文件包名和位置 -->
+		<sqlMapGenerator targetPackage="com.zrxh.fangdai.data.mapper" targetProject="zrxh-fangdai-data\\src\\main\\java\\">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.zrxh.fangdai.data.dao" targetProject="zrxh-fangdai-data\\src\\main\\java\\">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+		<table tableName="fd_apply_info" domainObjectName="ApplyInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_apply_mortgage" domainObjectName="ApplyMortgage" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_apply_photo" domainObjectName="ApplyPhoto" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_del_push_message" domainObjectName="DelPushMessage" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_dict" domainObjectName="Dict" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_dict_data" domainObjectName="DictData" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_loan_product" domainObjectName="LoanProduct" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_push_message" domainObjectName="PushMessage" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_version" domainObjectName="Version" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="citys" domainObjectName="City" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+		<table tableName="fd_auth_work" domainObjectName="AuthWork" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" />
+	</context>
+</generatorConfiguration>
