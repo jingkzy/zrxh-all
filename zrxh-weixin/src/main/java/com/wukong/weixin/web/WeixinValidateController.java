@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.slf4j.Logger;
@@ -22,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wukong.weixin.service.IWeixinApi;
 import com.wukong.weixin.tools.SHA1Tool;
-
-import net.sf.json.JSONObject;
 /**
  * @author wukong
  *
@@ -44,11 +41,9 @@ public class WeixinValidateController extends BaseController   {
 	
 	@RequestMapping(value = "check_signature")
 	public void checkSignature(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		logger.info("11111111111111111");
 		if (request.getMethod().toLowerCase().equals("get")) {
-	    	Valid(request,response);//验证通过后可删除此行代码
+	    	//Valid(request,response);//验证通过后可删除此行代码
 	    }
-		logger.info("22222222222222222");
 	    if (request.getMethod().toLowerCase().equals("post")){
 	    	try{
 	    		weixinServer(request, response);
@@ -93,10 +88,6 @@ public class WeixinValidateController extends BaseController   {
 			String tmpStr =ArrTmp[0]+ArrTmp[1]+ArrTmp[2]; 
 			tmpStr = SHA1Tool.toSHA1Password(tmpStr);
 			tmpStr = tmpStr.toLowerCase();
-			logger.info("-------------------------------------------------------------------------------");
-			logger.info("signature="+signature);
-			logger.info("tmpStr="+tmpStr);
-			logger.info("-------------------------------------------------------------------------------");
 			if (tmpStr.equals(signature)){
 				return true;
 			}else{
@@ -118,31 +109,25 @@ public class WeixinValidateController extends BaseController   {
 	 */
     private synchronized void weixinServer(HttpServletRequest request,HttpServletResponse response) {
 		try{
-			ServletOutputStream outPutStream = response.getOutputStream();
-			String strresponse = "<xml>";
 			//回复消息的部分
-			Document document=DocumentHelper.createDocument();
 			org.dom4j.io.SAXReader saxReader = new org.dom4j.io.SAXReader();
-			Document doc = saxReader.read(new InputStreamReader(request.getInputStream())) ;
-			OutputFormat format = new OutputFormat("    ", true);
-			logger.info("3333333333333333333");
+			Document document = saxReader.read(new InputStreamReader(request.getInputStream())) ;
+			OutputFormat outputFormat = new OutputFormat("    ", true);
 			//设置编码
-			format.setEncoding("UTF-8");
-			org.dom4j.io.XMLWriter dd=new  org.dom4j.io.XMLWriter();
-			dd.write(doc);
-			Element rootElement= doc.getDocument().getRootElement();
+			outputFormat.setEncoding("UTF-8");
+			org.dom4j.io.XMLWriter xmlWriter=new  org.dom4j.io.XMLWriter();
+			xmlWriter.write(document);
+			Element rootElement= document.getDocument().getRootElement();
 			String FromUserName = rootElement.element("FromUserName").getText();
-			String ToUserName = rootElement.element("ToUserName").getText(); //xn.SelectSingleNode("//ToUserName").InnerText;
-			String MsgType = rootElement.element("MsgType").getText();// xn.SelectSingleNode("//MsgType").InnerText;
-			logger.info("消息MsgType="+MsgType);
+			String ToUserName = rootElement.element("ToUserName").getText();
 			if(rootElement.element("Event")!=null){
 				String Event = rootElement.element("Event").getText();
-				logger.info("触发的事件为|"+Event);
+				/*logger.info("---------------------start-----------------------------");
+				logger.info("Event="+Event+",FromUserName="+FromUserName+",ToUserName="+ToUserName);
+				logger.info("--------------------- end -----------------------------");*/
 				if (Event.equals("subscribe")){
-					//获取access_token的值 --ayu
-					String Access_token=wxApi.getAccessToken().getString("access_token");
-					String  userinfo="";
-					//注册用户 
+					//新关注用户
+					String strresponse = "<xml>";
 					strresponse = strresponse + "<ToUserName><![CDATA[" + FromUserName + "]]></ToUserName>";
 					strresponse = strresponse + "<FromUserName><![CDATA[" + ToUserName + "]]></FromUserName>";
 					strresponse = strresponse + "<CreateTime>" + System.currentTimeMillis()+ "</CreateTime>)";
@@ -157,27 +142,14 @@ public class WeixinValidateController extends BaseController   {
 						strresponse = strresponse + "</item>";
 					strresponse = strresponse + "</Articles>";
 					strresponse = strresponse + "</xml>";
-					
+					ServletOutputStream outPutStream = response.getOutputStream();
 					outPutStream.write(strresponse.getBytes("UTF-8"));
 					outPutStream.flush();
 					outPutStream.close();
 				}else if(Event.equalsIgnoreCase("CLICK")){
-					if(rootElement.element("EventKey")!=null){
-						String EventKey = rootElement.element("EventKey").getText();
-						logger.info("触发的事件KEY为|"+EventKey);
-						if(StringUtils.equals(EventKey, "Key002_Tel")){
-							strresponse = strresponse + "<xml><ToUserName><![CDATA[" + FromUserName + "]]></ToUserName>";
-							strresponse = strresponse + "<FromUserName><![CDATA[" + ToUserName + "]]></FromUserName>";
-							strresponse = strresponse + "<CreateTime>" + System.currentTimeMillis()+ "</CreateTime>)";
-							strresponse = strresponse + "<MsgType><![CDATA[text]]></MsgType>";
-							strresponse = strresponse + "<Content><![CDATA[客服电话：4006076333]]></Content>";
-							strresponse = strresponse + "</xml>";
-							outPutStream.write(strresponse.getBytes("UTF-8"));
-							outPutStream.flush();
-							outPutStream.close();
-							logger.info("index.jsp|当触发Key002_Tel事件时给客户端发送内容如下客|服电话：4006076333");
-						}
-					}
+					
+				}else if(Event.equalsIgnoreCase("VIEW")){
+
 				}
 			}
 		}catch(Exception err){

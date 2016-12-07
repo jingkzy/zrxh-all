@@ -25,7 +25,7 @@ public class ParseResourceUtil  {
 		logger.info(getProperty("winxin.appID"));
 		logger.info(getProperty("winxin.appID"));
 		logger.info(getProperty("winxin.appID"));
-		logger.info(getProperty("winxin.appID"));
+		logger.info(getProperty("web.url"));
 	}
 	
 }

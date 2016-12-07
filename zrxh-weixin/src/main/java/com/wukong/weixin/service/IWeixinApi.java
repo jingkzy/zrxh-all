@@ -6,4 +6,6 @@ public interface IWeixinApi {
 	JSONObject getAccessToken();
 	JSONObject getHtmlAccessToken(String code);
 	JSONObject getUserInfo(String htmlAccessToken,String openid);
+	JSONObject getJsApiToken();
+	JSONObject getPoiList();
 }
